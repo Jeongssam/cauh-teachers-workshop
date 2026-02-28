@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026년 연수자료 | 중대부고 교무부 평가계</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    min-height: 100%;
+    font-family: 'Nanum Gothic', sans-serif;
+    overflow-x: hidden;
+  }
+
+  body {
+    background: linear-gradient(160deg, #0d4a7a 0%, #1a6fad 30%, #3a9fd4 60%, #7ec8e3 85%, #b8e0f5 100%);
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Bokeh */
+  .bokeh {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .bokeh span {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) scale(1); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(-110vh) scale(1.1); opacity: 0; }
+  }
+
+  /* Layout */
+  .page {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 20px 60px;
+  }
+
+  /* Top nav */
+  .top-nav {
+    width: 100%;
+    max-width: 860px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    animation: fadeDown 0.7s ease both;
+  }
+
+  .back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    transition: all 0.25s ease;
+  }
+  .back-btn:hover {
+    background: rgba(255,255,255,0.22);
+    color: white;
+    transform: translateX(-2px);
+  }
+  .back-btn svg {
+    width: 16px; height: 16px;
+    stroke: currentColor; fill: none;
+    stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .school-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .badge-icon {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: 1.5px solid rgba(255,255,255,0.45);
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(8px);
+  }
+  .badge-icon svg { width: 20px; height: 20px; fill: white; }
+  .school-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.05em;
+  }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    margin-bottom: 16px;
+    animation: fadeDown 0.85s 0.1s ease both;
+  }
+
+  .year-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 30px;
+    padding: 4px 18px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.3;
+    text-shadow: 0 2px 20px rgba(10,60,110,0.4);
+    margin-bottom: 12px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.72);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    margin-bottom: 0;
+    animation: fadeDown 1s 0.2s ease both;
+  }
+
+  /* Divider */
+  .divider {
+    width: 50px; height: 1px;
+    background: rgba(255,255,255,0.3);
+    margin: 28px auto 44px;
+    animation: fadeUp 1s 0.25s ease both;
+  }
+
+  /* Menu cards */
+  .menu-grid {
+    width: 100%;
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: fadeUp 1s 0.35s ease both;
+  }
+
+  .menu-card {
+    position: relative;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 20px;
+    backdrop-filter: blur(18px);
+    padding: 32px 36px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+  }
+
+  .menu-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .menu-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.55);
+    box-shadow: 0 20px 50px rgba(10,50,100,0.3);
+  }
+
+  .menu-card:hover::before { opacity: 1; }
+
+  .menu-card.disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* Card icon */
+  .card-icon {
+    flex-shrink: 0;
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .card-icon svg {
+    width: 30px; height: 30px;
+    stroke: white; fill: none;
+    stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* Card content */
+  .card-body { flex: 1; }
+
+  .card-status {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 12px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+  }
+
+  .status-done {
+    background: rgba(80,200,140,0.25);
+    border: 1px solid rgba(80,200,140,0.5);
+    color: #a0f0c0;
+  }
+
+  .status-upcoming {
+    background: rgba(255,200,80,0.2);
+    border: 1px solid rgba(255,200,80,0.4);
+    color: #ffe9a0;
+  }
+
+  .card-title {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  /* Card arrow */
+  .card-arrow {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: all 0.25s ease;
+  }
+
+  .menu-card:hover .card-arrow {
+    background: rgba(255,255,255,0.28);
+    transform: translateX(3px);
+  }
+
+  .card-arrow svg {
+    width: 16px; height: 16px;
+    stroke: white; fill: none;
+    stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .disabled .card-arrow {
+    opacity: 0.4;
+  }
+
+  /* Upcoming overlay text */
+  .upcoming-note {
+    position: absolute;
+    right: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: rgba(255,230,130,0.8);
+    letter-spacing: 0.04em;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 60px;
+    text-align: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.73rem;
+    line-height: 1.9;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .menu-card { padding: 24px 20px; gap: 16px; }
+    .card-icon { width: 48px; height: 48px; border-radius: 12px; }
+    .card-icon svg { width: 24px; height: 24px; }
+    .upcoming-note { display: none; }
+    .top-nav { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bokeh" id="bokeh"></div>
+
+<div class="page">
+
+  <!-- Top navigation -->
+  <nav class="top-nav">
+    <a class="back-btn" href="index.html">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      홈으로 돌아가기
+    </a>
+    <div class="school-badge">
+      <div class="badge-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <span class="school-name">중대부고 교무부 평가계</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="year-tag">2026년도</div>
+    <h1 class="hero-title">교사대상 연수자료 아카이브</h1>
+  </div>
+  <p class="hero-subtitle">2026년 교무부 평가계 연수자료 목록입니다.</p>
+
+  <div class="divider"></div>
+
+  <!-- Menu cards -->
+  <div class="menu-grid">
+
+    <!-- 1. 교수학습 운영 및 평가계획서 작성 안내 연수 -->
+    <a class="menu-card" href="#">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <span class="card-status status-done">✓ 연수 완료</span>
+        <div class="card-title">교수학습 운영 및 평가계획서<br>작성 안내 연수</div>
+        <div class="card-desc">연수자료를 확인하실 수 있습니다.</div>
+      </div>
+      <div class="card-arrow">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </a>
+
+    <!-- 2. 선행예방교육 연수 -->
+    <div class="menu-card disabled">
+      <div class="card-icon" style="opacity:0.6;">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <span class="card-status status-upcoming">⏳ 연수 예정</span>
+        <div class="card-title" style="color:rgba(255,255,255,0.65);">선행예방교육 연수</div>
+        <div class="card-desc">연수 진행 후 자료가 업로드될 예정입니다.</div>
+      </div>
+      <span class="upcoming-note">업로드 예정</span>
+      <div class="card-arrow" style="opacity:0.3;">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>중대부속고등학교 교무부 평가계</p>
+    <p>© 2026 All rights reserved.</p>
+  </footer>
+
+</div>
+
+<script>
+  const bokeh = document.getElementById('bokeh');
+  for (let i = 0; i < 28; i++) {
+    const s = document.createElement('span');
+    const size = Math.random() * 80 + 20;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      top:${Math.random()*100+100}%;
+      animation-duration:${Math.random()*12+8}s;
+      animation-delay:${Math.random()*10}s;
+      opacity:${Math.random()*0.5+0.1};
+    `;
+    bokeh.appendChild(s);
+  }
+</script>
+</body>
+</html>
