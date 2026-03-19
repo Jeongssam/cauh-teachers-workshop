@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>교수학습 운영 및 평가계획서 작성 안내 연수 | 중대부고 교무부 평가계</title>
+<title>2026학년도 교수학습 운영 및 평가계획서 작성 안내 연수 | 중대부고 교무부 평가계</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,39 +31,27 @@
     overflow-x: hidden;
   }
 
-  /* ── Header ── */
-  .site-header {
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-  }
-  .header-inner {
-    max-width: 900px; margin: 0 auto;
-    padding: 0 24px; height: 64px;
+  /* ── 배너 내 상단 네비 ── */
+  .hero-topnav {
     display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 24px;
   }
-  .header-logo {
-    display: flex; align-items: center; gap: 10px; text-decoration: none;
-  }
-  .logo-icon {
-    width: 36px; height: 36px; border-radius: 8px;
-    background: var(--primary);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .logo-icon svg { width: 20px; height: 20px; fill: white; }
-  .logo-text { font-size: 0.85rem; font-weight: 800; color: var(--primary-dk); line-height: 1.3; }
-  .logo-sub  { font-size: 0.7rem; color: var(--text-sub); font-weight: 400; }
 
   .back-btn {
     display: flex; align-items: center; gap: 6px;
-    color: var(--text-sub); text-decoration: none;
+    color: rgba(255,255,255,0.85); text-decoration: none;
     font-size: 0.82rem; font-weight: 700;
     padding: 7px 14px; border-radius: 8px;
-    border: 1px solid var(--border); background: var(--white);
+    border: 1px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
     transition: all 0.2s;
   }
-  .back-btn:hover { background: var(--primary-lt); color: var(--primary); border-color: var(--accent); }
+  .back-btn:hover {
+    background: rgba(255,255,255,0.28);
+    border-color: rgba(255,255,255,0.6);
+    color: white;
+  }
   .back-btn svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
 
   /* ── Hero Banner ── */
@@ -94,13 +82,12 @@
     animation: fadeDown 0.7s ease both;
   }
 
+  /* breadcrumb - 링크 없이 텍스트만 */
   .hero-breadcrumb {
     display: flex; align-items: center; gap: 6px;
     font-size: 0.73rem; color: rgba(255,255,255,0.55);
     margin-bottom: 16px;
   }
-  .hero-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.15s; }
-  .hero-breadcrumb a:hover { color: rgba(255,255,255,0.9); }
   .hero-breadcrumb svg { width:11px; height:11px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
 
   .hero-tag {
@@ -116,28 +103,21 @@
   }
   .hero-icon {
     flex-shrink: 0;
-    width: 52px; height: 52px;
-    border-radius: 12px;
-    background: white;
-    border: none;
+    width: 52px; height: 52px; border-radius: 12px;
+    background: white; border: none;
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 2px 12px rgba(0,0,0,0.15);
   }
   .hero-icon svg { width: 28px; height: 28px; }
-  .hero-title-text {
-    display: flex; flex-direction: column; gap: 4px;
-  }
+  .hero-title-text { display: flex; flex-direction: column; gap: 4px; }
   .hero-done-badge {
     display: inline-block;
     background: rgba(255,255,255,0.2);
     border: 1.5px solid rgba(255,255,255,0.45);
-    border-radius: 20px;
-    padding: 4px 16px;
+    border-radius: 20px; padding: 4px 16px;
     font-size: 0.8rem; font-weight: 800;
-    color: rgba(255,255,255,0.92);
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-    flex-shrink: 0;
+    color: rgba(255,255,255,0.92); letter-spacing: 0.06em;
+    white-space: nowrap; flex-shrink: 0;
   }
   .hero-title {
     font-size: clamp(1.4rem, 3.5vw, 2.1rem);
@@ -160,158 +140,48 @@
   }
   .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
 
-  /* White card */
   .card {
     background: var(--white); border: 1px solid var(--border);
     border-radius: 16px; padding: 28px 30px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.04);
   }
 
-  /* Overview grid */
-  .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .info-item {
-    background: var(--bg); border: 1px solid var(--border);
-    border-radius: 10px; padding: 16px 18px;
-  }
-  .info-item.full { grid-column: 1 / -1; }
-  .info-label {
-    font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em;
-    color: var(--text-light); text-transform: uppercase; margin-bottom: 6px;
-  }
-  .info-value { font-size: 0.88rem; font-weight: 700; color: var(--text); line-height: 1.5; }
-
-  /* Training item */
-  .training-item { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
-  .training-header {
-    background: var(--primary-lt); border-bottom: 1px solid #cce3f5;
-    padding: 16px 22px;
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
-  }
-  .training-header-left { display: flex; align-items: center; gap: 12px; }
-  .training-num {
-    width: 30px; height: 30px; border-radius: 50%;
-    background: var(--primary);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.78rem; font-weight: 800; color: white; flex-shrink: 0;
-  }
-  .training-name { font-size: 1rem; font-weight: 800; color: var(--primary-dk); }
-  .badge-done {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em;
-    padding: 4px 12px; border-radius: 20px;
-    background: var(--green-bg); color: var(--green); border: 1px solid #bbf7d0;
-  }
-  .badge-done svg { width:12px; height:12px; stroke:currentColor; fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
-
-  .training-body { padding: 22px; }
-  .meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
-  .meta-chip {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--bg); border: 1px solid var(--border);
-    border-radius: 8px; padding: 7px 13px;
-    font-size: 0.78rem; color: var(--text-sub);
-  }
-  .meta-chip svg { width:13px; height:13px; stroke:var(--text-light); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
-  .meta-chip strong { color: var(--text); font-weight: 700; }
-
-  /* PDF button */
-  .pdf-btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--primary); color: white;
-    font-family: 'Nanum Gothic', sans-serif;
-    font-size: 0.9rem; font-weight: 800;
-    padding: 13px 24px; border-radius: 10px;
-    border: none; cursor: pointer; text-decoration: none;
-    transition: all 0.25s ease;
-    box-shadow: 0 4px 14px rgba(26,111,173,0.3);
-  }
-  .pdf-btn:hover {
-    background: var(--primary-dk);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(26,111,173,0.35);
-  }
-  .pdf-btn svg { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-
-  /* ── Training Card (reference image style) ── */
+  /* ── Training Card ── */
   .training-card {
-    border-radius: 16px;
-    overflow: hidden;
+    border-radius: 16px; overflow: hidden;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
   }
-
-  /* 파란 헤더 */
-  .tc-header {
-    background: linear-gradient(135deg, var(--primary-dk) 0%, var(--primary) 100%);
-    padding: 24px 28px 20px;
-    text-align: center;
-  }
-  .tc-title {
-    font-size: 1.25rem; font-weight: 800;
-    color: white; margin-bottom: 10px;
-    letter-spacing: 0.02em;
-  }
-  .tc-badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.35);
-    border-radius: 20px;
-    padding: 4px 18px;
-    font-size: 0.8rem; font-weight: 700;
-    color: rgba(255,255,255,0.92);
-    letter-spacing: 0.06em;
-  }
-
-  /* 흰 본문 */
   .tc-body {
     background: var(--white);
     padding: 28px 28px 24px;
   }
-
-  /* 정보 테이블 */
   .info-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 24px;
+    width: 100%; border-collapse: collapse; margin-bottom: 24px;
   }
-  .info-table tr {
-    border-bottom: 1px solid var(--border);
-  }
-  .info-table tr:last-child {
-    border-bottom: none;
-  }
+  .info-table tr { border-bottom: 1px solid var(--border); }
+  .info-table tr:last-child { border-bottom: none; }
   .info-table th {
     padding: 11px 16px 11px 0;
-    font-size: 0.88rem; font-weight: 800;
-    color: var(--text);
-    white-space: nowrap;
-    vertical-align: top;
-    width: 90px;
+    font-size: 0.88rem; font-weight: 800; color: var(--text);
+    white-space: nowrap; vertical-align: top; width: 90px;
   }
   .info-table td {
     padding: 11px 0;
-    font-size: 0.88rem; font-weight: 400;
-    color: var(--text-sub);
-    line-height: 1.6;
+    font-size: 0.88rem; font-weight: 400; color: var(--text-sub); line-height: 1.6;
   }
-
-  /* 연수자료 버튼 */
   .tc-btn {
     display: block; width: 100%;
     background: linear-gradient(135deg, var(--primary-dk) 0%, var(--primary) 100%);
     color: white; text-decoration: none;
     font-family: 'Nanum Gothic', sans-serif;
-    font-size: 1rem; font-weight: 800;
-    text-align: center;
-    padding: 16px;
-    border-radius: 12px;
-    letter-spacing: 0.03em;
+    font-size: 1rem; font-weight: 800; text-align: center;
+    padding: 16px; border-radius: 12px; letter-spacing: 0.03em;
     transition: all 0.25s ease;
     box-shadow: 0 4px 14px rgba(26,111,173,0.3);
   }
   .tc-btn:hover {
-    filter: brightness(1.1);
-    transform: translateY(-2px);
+    filter: brightness(1.1); transform: translateY(-2px);
     box-shadow: 0 8px 22px rgba(26,111,173,0.4);
   }
 
@@ -338,63 +208,6 @@
     font-size: 0.75rem; color: var(--text-light); line-height: 1.9;
   }
 
-  /* ── PDF Modal ── */
-  .modal-overlay {
-    position: fixed; inset: 0; z-index: 1000;
-    background: rgba(15,30,50,0.6); backdrop-filter: blur(4px);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-  }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-
-  .modal-box {
-    width: 92vw; max-width: 1000px; height: 88vh;
-    background: var(--white); border-radius: 18px;
-    display: flex; flex-direction: column; overflow: hidden;
-    transform: scale(0.96) translateY(10px);
-    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.22);
-    border: 1px solid var(--border);
-  }
-  .modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
-
-  .modal-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 22px; border-bottom: 1px solid var(--border);
-    background: var(--bg); flex-shrink: 0;
-  }
-  .modal-title-row { display: flex; align-items: center; gap: 10px; }
-  .modal-icon {
-    width: 34px; height: 34px; border-radius: 8px;
-    background: var(--primary-lt); border: 1px solid #cce3f5;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .modal-icon svg { width:17px; height:17px; stroke:var(--primary); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-  .modal-label { font-size: 0.9rem; font-weight: 800; color: var(--text); }
-  .modal-sub   { font-size: 0.7rem; color: var(--text-sub); margin-top: 1px; }
-
-  .modal-actions { display: flex; align-items: center; gap: 8px; }
-  .modal-open-btn {
-    display: flex; align-items: center; gap: 6px;
-    background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 7px 13px;
-    color: var(--text-sub); font-family: 'Nanum Gothic', sans-serif;
-    font-size: 0.75rem; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s;
-  }
-  .modal-open-btn:hover { background: var(--primary-lt); color: var(--primary); border-color: var(--accent); }
-  .modal-open-btn svg { width:12px; height:12px; stroke:currentColor; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
-
-  .close-btn {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: var(--white); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; color: var(--text-sub); transition: all 0.2s;
-  }
-  .close-btn:hover { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
-  .close-btn svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2.5; stroke-linecap:round; }
-
-  .modal-body { flex: 1; overflow: hidden; }
-  .modal-body iframe { width: 100%; height: 100%; border: none; display: block; }
-
   @keyframes fadeDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
   @keyframes fadeUp   { from{opacity:0;transform:translateY(14px)}  to{opacity:1;transform:translateY(0)} }
 
@@ -403,35 +216,41 @@
     .hero-banner  { padding:40px 16px 36px; }
     .page-body    { padding:24px 16px 60px; }
     .card         { padding:20px 16px; }
-    .overview-grid { grid-template-columns:1fr; }
-    .info-item.full { grid-column:1; }
-    .modal-box    { height:92vh; border-radius:14px; }
-    .training-header { padding:14px 16px; }
-    .training-body   { padding:16px; }
   }
 </style>
 </head>
 <body>
 
-
 <!-- ── Hero Banner ── -->
 <section class="hero-banner">
   <div class="hero-circles" id="heroCircles"></div>
   <div class="hero-inner">
-    <div class="hero-breadcrumb">
-      <a href="https://jeongssam.github.io/cauh-teachers-workshop/">홈</a>
-      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      <a href="https://jeongssam.github.io/cauh-teachers-workshop/2026/2026workshop_index.html">2026년도</a>
-      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      <span style="color:rgba(255,255,255,0.85);">교수학습 운영 및 평가계획서 작성 안내 연수</span>
+
+    <!-- 배너 상단: breadcrumb 왼쪽 / 뒤로가기 오른쪽 -->
+    <div class="hero-topnav">
+      <div class="hero-breadcrumb" style="margin-bottom:0;">
+        <span>홈</span>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>2026년도</span>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        <span style="color:rgba(255,255,255,0.85);">교수학습 운영 및 평가계획서 작성 안내 연수</span>
+      </div>
+      <a class="back-btn" href="https://jeongssam.github.io/cauh-teachers-workshop/2026/2026workshop_index.html">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        뒤로가기
+      </a>
     </div>
-    <div class="hero-tag">2026년도 연수</div>
+
+    <div class="hero-tag" style="margin-top:20px;">2026년도 연수</div>
     <div class="hero-title-row">
+      <!-- 아이콘: 흰 바탕에 네이비 문서 아이콘 -->
       <div class="hero-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-          <path d="M2 12l10 5 10-5"/>
-          <path d="M2 17l10 5 10-5"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-dk)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="8" y1="13" x2="16" y2="13"/>
+          <line x1="8" y1="17" x2="16" y2="17"/>
+          <line x1="8" y1="9"  x2="10" y2="9"/>
         </svg>
       </div>
       <div class="hero-title-text">
@@ -446,10 +265,8 @@
 <!-- ── Page Body ── -->
 <main class="page-body">
 
-  <!-- 연수 개요 -->
   <section class="section">
     <div class="training-card">
-      <!-- 흰 본문 -->
       <div class="tc-body">
         <table class="info-table">
           <tr>
@@ -469,7 +286,6 @@
             <td>중앙대학교사범대학부속고등학교 전체 교사</td>
           </tr>
         </table>
-
         <a class="tc-btn" href="https://jeongssam.github.io/cauh-teachers-workshop/2026/documents/20260224.pdf" target="_blank">
           🔍 연수자료 보기
         </a>
@@ -477,7 +293,6 @@
     </div>
   </section>
 
-  <!-- 안내사항 -->
   <section class="section">
     <div class="section-title">안내사항</div>
     <div class="notice-card">
@@ -500,10 +315,7 @@
   <p>© 2026 All rights reserved.</p>
 </footer>
 
-
-
 <script>
-  /* Hero bokeh circles */
   const container = document.getElementById('heroCircles');
   [
     {w:180,h:140,x:5, y:40,op:0.10},{w:120,h:120,x:80,y:15,op:0.13},
