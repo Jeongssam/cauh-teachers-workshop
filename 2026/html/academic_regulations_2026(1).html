@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 학업성적관리규정 안내 연수 | 중대부고</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy:     #0d3a6e;
+  --blue:     #1a6fad;
+  --mid:      #2a86cc;
+  --sky:      #5ba3d4;
+  --light:    #e8f4fc;
+  --lighter:  #f4f9fd;
+  --white:    #ffffff;
+  --text:     #1e293b;
+  --sub:      #475569;
+  --muted:    #94a3b8;
+  --border:   #e2e8f0;
+  --green:    #16a34a;
+  --green-bg: #dcfce7;
+  --green-bd: #bbf7d0;
+  --amber:    #d97706;
+  --amber-bg: #fef3c7;
+  --amber-bd: #fde68a;
+  --red:      #dc2626;
+  --red-bg:   #fee2e2;
+  --red-bd:   #fecaca;
+  --purple:   #7c3aed;
+  --purple-bg:#ede9fe;
+}
+
+html, body {
+  font-family: 'Nanum Gothic', sans-serif;
+  background: var(--lighter);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ─── TOP NAV ─── */
+.top-bar {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, var(--sky) 100%);
+  padding: 0 28px;
+  position: sticky; top: 0; z-index: 200;
+  box-shadow: 0 2px 12px rgba(13,58,110,0.3);
+}
+.top-bar-inner {
+  max-width: 1000px; margin: 0 auto;
+  height: 58px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.top-logo {
+  display: flex; align-items: center; gap: 10px;
+}
+.top-logo-icon {
+  width: 32px; height: 32px; border-radius: 7px;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+}
+.top-logo-icon svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.top-logo-text { font-size: 0.82rem; font-weight: 800; color: rgba(255,255,255,0.9); }
+
+.back-btn {
+  display: flex; align-items: center; gap: 6px;
+  color: rgba(255,255,255,0.85); text-decoration: none;
+  font-size: 0.8rem; font-weight: 700;
+  padding: 7px 14px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+}
+.back-btn:hover { background: rgba(255,255,255,0.24); color: white; transform: translateX(-2px); }
+.back-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ─── HERO ─── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 55%, var(--sky) 100%);
+  padding: 52px 28px 48px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 400px 250px at 10% 50%, rgba(255,255,255,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 300px 200px at 90% 20%, rgba(255,255,255,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 150px 150px at 60% 90%, rgba(255,255,255,0.06) 0%, transparent 60%);
+}
+.hero-inner { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
+.hero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px; padding: 4px 16px;
+  font-size: 0.72rem; font-weight: 800; color: rgba(255,255,255,0.85);
+  letter-spacing: 0.12em; margin-bottom: 16px;
+}
+.hero h1 {
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  font-weight: 800; color: white; line-height: 1.35;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  margin-bottom: 14px;
+}
+.hero-meta {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px;
+  margin-top: 8px;
+}
+.hero-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 20px; padding: 5px 14px;
+  font-size: 0.78rem; color: rgba(255,255,255,0.88); font-weight: 700;
+}
+.hero-chip svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ─── TAB NAV ─── */
+.toc-bar {
+  background: linear-gradient(180deg, #f0f6fc 0%, var(--lighter) 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 28px;
+  position: sticky; top: 58px; z-index: 100;
+  box-shadow: 0 2px 10px rgba(13,58,110,0.07);
+}
+.toc-inner {
+  max-width: 1000px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.toc-btn {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px;
+  padding: 14px 10px;
+  font-size: 0.8rem; font-weight: 800;
+  color: var(--sub);
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Nanum Gothic', sans-serif;
+  line-height: 1.35;
+  text-align: center;
+  transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  position: relative;
+  white-space: normal;
+}
+.toc-btn .btn-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 8px;
+  background: var(--border);
+  font-size: 0.65rem; font-weight: 800; color: var(--sub);
+  transition: all 0.22s ease;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.toc-btn .btn-label { font-size: 0.8rem; font-weight: 800; }
+.toc-btn:hover {
+  border-color: var(--sky);
+  color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(26,111,173,0.14);
+}
+.toc-btn:hover .btn-num {
+  background: var(--light);
+  color: var(--blue);
+}
+.toc-btn.active {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  border-color: var(--navy);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(13,58,110,0.28);
+}
+.toc-btn.active .btn-num:not([style]) {
+  background: rgba(255,255,255,0.22);
+  color: white;
+}
+.toc-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -11px; left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--blue);
+}
+@media(max-width: 640px) {
+  .toc-inner { grid-template-columns: repeat(2, 1fr); }
+  .toc-btn.active::after { display: none; }
+}
+
+/* ─── BODY ─── */
+.body-wrap {
+  max-width: 1000px; margin: 0 auto;
+  padding: 36px 28px 80px;
+}
+
+/* ─── SECTION 탭 전환 ─── */
+.section {
+  display: none;
+  animation: fadeIn 0.35s ease both;
+}
+.section.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.section-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 20px;
+}
+.section-num {
+  flex-shrink: 0;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem; font-weight: 800; color: white; letter-spacing: 0.02em;
+}
+.section-title-text {
+  font-size: 1.15rem; font-weight: 800; color: var(--navy);
+}
+.section-badge {
+  margin-left: auto; flex-shrink: 0;
+  font-size: 0.68rem; font-weight: 800; letter-spacing: 0.06em;
+  padding: 4px 12px; border-radius: 20px;
+}
+.badge-blue { background: var(--light); color: var(--blue); border: 1px solid #bcd9f0; }
+
+/* ─── SLIDE CARD ─── */
+.slide {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  margin-bottom: 16px;
+}
+.slide-head {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  padding: 18px 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.slide-head-icon {
+  flex-shrink: 0;
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(255,255,255,0.18);
+  display: flex; align-items: center; justify-content: center;
+}
+.slide-head-icon svg { width: 20px; height: 20px; stroke: white; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.slide-head-title { font-size: 1rem; font-weight: 800; color: white; }
+.slide-head-sub { font-size: 0.75rem; color: rgba(255,255,255,0.65); margin-top: 2px; }
+.slide-body { padding: 24px; }
+
+/* ─── HIGHLIGHT BOX ─── */
+.hbox {
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 14px;
+  border-left: 4px solid;
+}
+.hbox:last-child { margin-bottom: 0; }
+.hbox-blue  { background: var(--light);    border-color: var(--blue);   }
+.hbox-green { background: var(--green-bg); border-color: var(--green);  }
+.hbox-amber { background: var(--amber-bg); border-color: var(--amber);  }
+.hbox-red   { background: var(--red-bg);   border-color: var(--red);    }
+.hbox-purple{ background: var(--purple-bg);border-color: var(--purple); }
+.hbox-label {
+  font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em;
+  margin-bottom: 6px; text-transform: uppercase;
+}
+.hbox-blue   .hbox-label { color: var(--blue); }
+.hbox-green  .hbox-label { color: var(--green); }
+.hbox-amber  .hbox-label { color: var(--amber); }
+.hbox-red    .hbox-label { color: var(--red); }
+.hbox-purple .hbox-label { color: var(--purple); }
+.hbox p, .hbox li { font-size: 0.88rem; color: var(--text); line-height: 1.7; }
+.hbox ul { list-style: none; padding-left: 0; }
+.hbox ul li { display: flex; gap: 8px; margin-bottom: 4px; }
+.hbox ul li::before { content: '•'; flex-shrink: 0; color: var(--muted); }
+.hbox strong { font-weight: 800; }
+
+/* ─── INFO GRID ─── */
+.info-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin-bottom: 14px;
+}
+.info-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
+.info-tile {
+  background: var(--lighter); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 16px;
+}
+.info-tile-label {
+  font-size: 0.65rem; font-weight: 800; letter-spacing: 0.08em;
+  color: var(--muted); text-transform: uppercase; margin-bottom: 6px;
+}
+.info-tile-value {
+  font-size: 0.88rem; font-weight: 700; color: var(--text); line-height: 1.5;
+}
+
+/* ─── MEMBER TABLE ─── */
+.member-table {
+  width: 100%; border-collapse: collapse; font-size: 0.85rem;
+}
+.member-table th {
+  background: var(--navy); color: white;
+  padding: 10px 14px; font-weight: 800; font-size: 0.78rem; text-align: left;
+}
+.member-table th:first-child { border-radius: 8px 0 0 0; }
+.member-table th:last-child  { border-radius: 0 8px 0 0; }
+.member-table td {
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+  color: var(--text); line-height: 1.5;
+  vertical-align: top;
+}
+.member-table tr:last-child td { border-bottom: none; }
+.member-table tr:nth-child(even) td { background: var(--lighter); }
+.role-badge {
+  display: inline-block; font-size: 0.7rem; font-weight: 800;
+  padding: 2px 9px; border-radius: 20px;
+  background: var(--light); color: var(--blue); border: 1px solid #bcd9f0;
+}
+
+/* ─── DELIBERATION TABLE ─── */
+.delib-table {
+  width: 100%; border-collapse: collapse; font-size: 0.83rem;
+}
+.delib-table th {
+  background: var(--navy); color: white;
+  padding: 10px 14px; font-weight: 800; font-size: 0.78rem; text-align: left;
+}
+.delib-table th:first-child { border-radius: 8px 0 0 0; width: 52px; }
+.delib-table th:last-child  { border-radius: 0 8px 0 0; }
+.delib-table td {
+  padding: 9px 14px; border-bottom: 1px solid var(--border);
+  color: var(--text); line-height: 1.6; vertical-align: top;
+}
+.delib-table tr:last-child td { border-bottom: none; }
+.delib-table tr:nth-child(even) td { background: var(--lighter); }
+.delib-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--blue); color: white;
+  font-size: 0.72rem; font-weight: 800; flex-shrink: 0;
+}
+.delib-category {
+  background: var(--navy); color: white;
+  font-size: 0.75rem; font-weight: 800;
+  padding: 8px 14px; letter-spacing: 0.06em;
+}
+.delib-category td { background: var(--navy) !important; color: white; font-weight: 800; font-size: 0.78rem; }
+
+/* ─── NOTICE BOX ─── */
+.notice-box {
+  background: var(--amber-bg); border: 1px solid var(--amber-bd);
+  border-radius: 12px; padding: 16px 20px;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.notice-icon {
+  flex-shrink: 0; width: 22px; height: 22px; margin-top: 1px;
+}
+.notice-icon svg { width: 22px; height: 22px; stroke: var(--amber); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.notice-text { font-size: 0.86rem; color: #78350f; line-height: 1.7; font-weight: 700; }
+.notice-text strong { color: var(--amber); }
+
+/* ─── FOOTER ─── */
+.site-footer {
+  background: var(--white); border-top: 1px solid var(--border);
+  padding: 24px; text-align: center;
+  font-size: 0.75rem; color: var(--muted); line-height: 1.9;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.slide { animation: fadeUp 0.5s ease both; }
+
+@media(max-width: 640px) {
+  .body-wrap { padding: 24px 16px 60px; }
+  .info-grid { grid-template-columns: 1fr; }
+  .info-grid.col3 { grid-template-columns: 1fr; }
+  .slide-body { padding: 16px; }
+  .slide-head { padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top-bar">
+  <div class="top-bar-inner">
+    <div class="top-logo">
+      <div class="top-logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+      </div>
+      <span class="top-logo-text">중대부고 교무부 평가계</span>
+    </div>
+    <a class="back-btn" href="https://jeongssam.github.io/cauh-teachers-workshop/2026/html/training_2026regulation.html">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      뒤로가기
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">2026학년도 1차 연수</div>
+    <h1>2026학년도 중대부고<br>학업성적관리규정 안내 연수</h1>
+    <div class="hero-meta">
+      <span class="hero-chip">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        2026년 3월 23일
+      </span>
+      <span class="hero-chip">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        전체 교사 대상
+      </span>
+    </div>
+  </div>
+</header>
+
+<!-- TAB BUTTONS -->
+<div class="toc-bar">
+  <div class="toc-inner">
+    <button class="toc-btn active">
+      <span class="btn-num">1장</span>
+      <span class="btn-label">제1장 총칙</span>
+    </button>
+    <button class="toc-btn">
+      <span class="btn-num">2장</span>
+      <span class="btn-label">제2장 위원회 구성</span>
+    </button>
+    <button class="toc-btn">
+      <span class="btn-num" style="background:#fbbf24;color:#78350f;font-weight:800;">필독</span>
+      <span class="btn-label">위원회 심의사항<br>(규정)</span>
+    </button>
+    <button class="toc-btn">
+      <span class="btn-num" style="background:#fbbf24;color:#78350f;font-weight:800;">필독</span>
+      <span class="btn-label">위원회 심의사항<br>(안건)</span>
+    </button>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body-wrap">
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- SECTION 1: 제1장 총칙 -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="section active" id="sec1">
+    <div class="section-header">
+      <div class="section-num">1장</div>
+      <div class="section-title-text">제1장 총칙</div>
+      <span class="section-badge badge-blue">제1조 · 제2조</span>
+    </div>
+
+    <div class="slide">
+      <div class="slide-head">
+        <div class="slide-head-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <div class="slide-head-title">제1조 목적</div>
+          <div class="slide-head-sub">이 규정의 제정 배경 및 목적</div>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="hbox hbox-blue">
+          <div class="hbox-label">목적</div>
+          <p>이 규정은 <strong>2026학년도 「서울특별시교육청 학업성적관리 시행지침」</strong>에 따라 학교의 학업성적 평가 및 관리에 대한 기준을 제시함을 목적으로 한다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-head">
+        <div class="slide-head-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <div>
+          <div class="slide-head-title">제2조 기본 방침</div>
+          <div class="slide-head-sub">학업성적 평가·관리의 4대 원칙</div>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="info-grid col3">
+          <div class="info-tile">
+            <div class="info-tile-label">핵심 가치</div>
+            <div class="info-tile-value">객관성 · 공정성<br>투명성 · 신뢰도</div>
+          </div>
+          <div class="info-tile">
+            <div class="info-tile-label">연수 의무</div>
+            <div class="info-tile-value">모든 교직원<br>학기별 <strong>1회 이상</strong></div>
+          </div>
+          <div class="info-tile">
+            <div class="info-tile-label">미명시 사항 처리</div>
+            <div class="info-tile-value">학업성적관리<br>위원회 심의 후 시행</div>
+          </div>
+        </div>
+        <div class="hbox hbox-amber">
+          <div class="hbox-label">교직원 연수 의무 (제2조 ③항)</div>
+          <p>모든 교직원이 학업성적관리규정을 <strong>숙지하고 준수</strong>하도록 교직원 연수를 <strong>학기별 1회 이상</strong> 실시한다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- SECTION 2: 제2장 위원회 구성 -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="section" id="sec2">
+    <div class="section-header">
+      <div class="section-num">2장</div>
+      <div class="section-title-text">제2장 학업성적관리위원회</div>
+      <span class="section-badge badge-blue">제3조 · 제4조 · 제5조</span>
+    </div>
+
+    <div class="slide">
+      <div class="slide-head">
+        <div class="slide-head-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <div class="slide-head-title">위원회 구성 (제4조)</div>
+          <div class="slide-head-sub">위원장·부위원장·위원 총 7명</div>
+        </div>
+      </div>
+      <div class="slide-body">
+        <table class="member-table" style="border-radius:10px;overflow:hidden;margin-bottom:14px;">
+          <thead>
+            <tr>
+              <th style="width:80px;">직위</th>
+              <th style="width:130px;">해당자</th>
+              <th>주요 임무</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="role-badge">위원장</span></td>
+              <td style="font-weight:800;">교장</td>
+              <td>위원회 업무 총괄</td>
+            </tr>
+            <tr>
+              <td><span class="role-badge">부위원장</span></td>
+              <td style="font-weight:800;">교감</td>
+              <td>위원장 보좌, 유고 시 위원장 대행 / 보안 및 관리 책임자</td>
+            </tr>
+            <tr>
+              <td><span class="role-badge">위원</span></td>
+              <td style="font-weight:800;">교무부장</td>
+              <td>안건 상정 판단, 회의 진행, 기타 성적관리 업무 전반</td>
+            </tr>
+            <tr>
+              <td><span class="role-badge">간사(위원)</span></td>
+              <td style="font-weight:800;">평가계</td>
+              <td>회의 자료 수집·준비, 회의록 작성, 교수학습·평가운영계획·수행평가 관련 업무</td>
+            </tr>
+            <tr>
+              <td><span class="role-badge">위원</span></td>
+              <td style="font-weight:800;">고사관리계</td>
+              <td>고사별 평가 및 정기시험 운영(부정행위 등)</td>
+            </tr>
+            <tr>
+              <td><span class="role-badge">위원</span></td>
+              <td style="font-weight:800;">성적처리계</td>
+              <td>성적처리에 관한 사항</td>
+            </tr>
+            <tr>
+              <td><span class="role-badge">위원</span></td>
+              <td style="font-weight:800;">생활기록부계</td>
+              <td>학교생활기록부 정정에 관한 안건 등</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="hbox hbox-blue">
+          <div class="hbox-label">필요 시 추가 참석 가능</div>
+          <ul>
+            <li>교과담당교사 · 학급담임교사 · 관련업무 담당 교사</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- SECTION 3: 규정으로 정하는 심의사항 (연번 1~26) -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="section" id="sec3">
+
+    <div class="notice-box" style="margin-bottom:16px;">
+      <div class="notice-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+      <div class="notice-text">이 항목들은 학업성적관리위원회 심의를 거쳐 <strong>학업성적관리규정에 명시</strong>된 사항들입니다. 이미 규정으로 확정된 내용이므로, 변경이 필요한 경우에만 위원회 심의를 다시 받습니다.</div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-head">
+        <div class="slide-head-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div style="flex:1;">
+          <div class="slide-head-title">규정으로 확정된 심의 항목</div>
+          <div class="slide-head-sub">2026학년도 학업성적관리위원회 심의 완료</div>
+        </div>
+        <span style="
+          background:#fbbf24; color:#78350f;
+          font-size:0.7rem; font-weight:800;
+          padding:4px 12px; border-radius:20px;
+          white-space:nowrap; flex-shrink:0;
+          letter-spacing:0.06em;
+        ">별첨1</span>
+        <span style="
+          background:rgba(255,255,255,0.18); color:rgba(255,255,255,0.88);
+          border:1px solid rgba(255,255,255,0.3);
+          font-size:0.7rem; font-weight:800;
+          padding:4px 12px; border-radius:20px;
+          white-space:nowrap; flex-shrink:0;
+          letter-spacing:0.06em; margin-left:6px;
+        ">연번 1~26</span>
+      </div>
+      <div class="slide-body">
+        <table class="delib-table" style="border-radius:10px;overflow:hidden;">
+          <thead>
+            <tr style="background:#3d4a5c;">
+              <th style="width:46px;text-align:center;background:#3d4a5c;">연번</th>
+              <th style="background:#3d4a5c;">내 용</th>
+              <th style="width:80px;background:#3d4a5c;">관련 조항</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="3" class="delib-category" style="color:white;font-weight:800;">▸ 위원회 구성 관련</td></tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">1</div></td>
+              <td>학업성적관리위원회 부위원장, 위원회의 구성과 임무</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제4조②③⑥</td>
+            </tr>
+            <tr><td colspan="3" class="delib-category" style="color:white;font-weight:800;">▸ 출결 관련</td></tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">2</div></td>
+              <td>생리통으로 인한 결석, 지각·조퇴·결과 출결 산정기준</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제8조④7호</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">3</div></td>
+              <td>학교장이 정한 등교시각(08:10) 및 하교시각(16:00) — 지각·조퇴 처리 기준</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제9조①②</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">4</div></td>
+              <td>학교장이 정한 결과 처리 기준 <span style="color:var(--sub);font-size:0.8rem;">(50분 수업 기준 10분 이상 불참)</span></td>
+              <td style="color:var(--sub);font-size:0.78rem;">제9조③</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">5</div></td>
+              <td>같은 날짜에 지각, 조퇴, 결과 발생 시 처리 기준</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제9조⑥</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">6</div></td>
+              <td>지각, 조퇴, 결과 처리 기준 및 절차</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제9조⑦</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">7</div></td>
+              <td>질병·미인정 결석에 대한 출결상황 특기사항의 입력 여부 및 입력 내용</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제12조③2호</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">8</div></td>
+              <td>횟수가 많은 지각·조퇴·결과에 대한 출결상황 특기사항의 입력 여부 및 내용 <span style="color:var(--sub);font-size:0.8rem;"></span></td>
+              <td style="color:var(--sub);font-size:0.78rem;">제12조③3호</td>
+            </tr>
+            <tr><td colspan="3" class="delib-category" style="color:white;font-weight:800;">▸ 평가계획 및 수행평가 관련</td></tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">9</div></td>
+              <td>수업활동과 연계한 수행평가만으로 평가하는 과목</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제13조④</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">14</div></td>
+              <td>수행평가의 기본점수 부여 여부, 부여 점수의 범위 <span style="color:var(--sub);font-size:0.8rem;"></span></td>
+              <td style="color:var(--sub);font-size:0.78rem;">제15조⑥</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">15</div></td>
+              <td>수행평가 표절행위 처리 기준 <span style="color:var(--sub);font-size:0.8rem;">(교과별 평가계획으로 명시)</span></td>
+              <td style="color:var(--sub);font-size:0.78rem;">제16조④</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">16</div></td>
+              <td>수행평가 보조자료의 보관기간 <span style="color:var(--sub);font-size:0.8rem;"></span></td>
+              <td style="color:var(--sub);font-size:0.78rem;">제16조⑦</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">17</div></td>
+              <td>수행평가 결과물의 보관기간 <span style="color:var(--sub);font-size:0.8rem;"></span></td>
+              <td style="color:var(--sub);font-size:0.78rem;">제16조⑧</td>
+            </tr>
+            <tr><td colspan="3" class="delib-category" style="color:white;font-weight:800;">▸ 고사관리 관련</td></tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">10</div></td>
+              <td>부정행위 예방 대책 및 부정행위자 처리 절차·성적 기준<br><span style="color:var(--sub);font-size:0.8rem;">(금지물품, 유형, 고사실 배정, 감독관 유의사항, 지도 대책 포함)</span></td>
+              <td style="color:var(--sub);font-size:0.78rem;">제14조③, 제19조②④⑤</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">11</div></td>
+              <td>정기시험 및 수행평가의 이의신청 절차</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제14조④</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">13</div></td>
+              <td>정기시험 실시 횟수 <span style="color:var(--sub);font-size:0.8rem;">(학기별 2회: 중간·기말)</span></td>
+              <td style="color:var(--sub);font-size:0.78rem;">제15조②</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">18</div></td>
+              <td>시험지 유출 시 처리 기준</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제18조④</td>
+            </tr>
+            <tr><td colspan="3" class="delib-category" style="color:white;font-weight:800;background:var(--navy) !important;">▸ 학적변동 및 성적처리 관련</td></tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">12</div></td>
+              <td>학생선수의 대회 출전 또는 훈련과 관련한 성적처리의 절차와 방법</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제14조⑥</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">19</div></td>
+              <td>인정 사유, 인정점의 비율 및 산출 방식<br></td>
+              <td style="color:var(--sub);font-size:0.78rem;">제22조</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">20</div></td>
+              <td>과목별 분할점수 산출방식</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제24조②, 제24조의2②</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">21</div></td>
+              <td>동점자 처리 규정 <span style="color:var(--sub);font-size:0.8rem;"></span></td>
+              <td style="color:var(--sub);font-size:0.78rem;">제25조③④, 제25조의2③④</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">22</div></td>
+              <td>교육감의 승인을 얻어 학과별로 학생을 선발한 학교의 학과별 수강자수</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제26조②, 제26조의2②</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">23</div></td>
+              <td>동일 교육과정 내 동일 교과·과목이나 학습내용·성취기준이 달라 평가를 달리하는 경우</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제26조의2②</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">24</div></td>
+              <td>재취학·재입학·전입학·편입학 학생의 인정점 부여, 동일(유사)과목 성적인정과 반영 방법</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제29조④3호,⑤</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">25</div></td>
+              <td>병원학교·원격수업 등 건강장애 학생의 성적 처리</td>
+              <td style="color:var(--sub);font-size:0.78rem;">제30조⑥</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">26</div></td>
+              <td>장애학생의 평가조정 <span style="color:var(--sub);font-size:0.8rem;"></span></td>
+              <td style="color:var(--sub);font-size:0.78rem;">제35조</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- SECTION 4: 위원회 심의사항 (안건 상정) -->
+  <!-- ══════════════════════════════════════ -->
+  <section class="section" id="sec4">
+
+    <div class="notice-box" style="margin-bottom:16px;background:#fef2f2;border-color:#fecaca;">
+      <div class="notice-icon"><svg viewBox="0 0 24 24" style="stroke:#dc2626;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <div class="notice-text" style="color:#7f1d1d;">아래 사항과 관련하여 <strong>심의를 받을 일이 생기신 경우</strong>, <strong style="color:#dc2626;">교무부장에게 안건 상정</strong>을 요청해 주세요.<br>교사 개인이 임의로 처리하지 않도록 유의하시기 바랍니다.</div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-head" style="background: linear-gradient(135deg, #1e3a5f 0%, #2a5298 100%);">
+        <div class="slide-head-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div style="flex:1;">
+          <div class="slide-head-title">학업성적관리위원회 심의사항</div>
+          <div class="slide-head-sub"> — 회의 안건으로 상정해야 하는 사항</div>
+        </div>
+        <span style="
+          background:#fbbf24; color:#78350f;
+          font-size:0.7rem; font-weight:800;
+          padding:4px 12px; border-radius:20px;
+          white-space:nowrap; flex-shrink:0;
+          letter-spacing:0.06em;
+        ">별첨1</span>
+      </div>
+      <div class="slide-body">
+        <table class="delib-table" style="border-radius:10px;overflow:hidden;">
+          <thead>
+            <tr>
+              <th style="width:46px;text-align:center;">연번</th>
+              <th>심의 내용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">1</div></td>
+              <td><strong>학업성적관리규정 제·개정</strong></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">2</div></td>
+              <td>소인수 과목 등급 산출 여부</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">3</div></td>
+              <td><strong>교과학습 평가 계획</strong><span style="color:var(--sub);font-size:0.82rem;"> (담당과목교사 작성 → 교과협의회 → 위원회 심의 → 학교장 결재)</span></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">4</div></td>
+              <td><strong>교과학습 평가 계획 <span style="color: red;">변경</span></strong> <span style="color:var(--sub);font-size:0.82rem;"><br>(각 평가 <span style="color: red;">시행 전</span>(정기시험, 수행평가 모두 해당) 평가계에게 변경 사항 알림 → 교과협의회 → 위원회 심의 → 학교장 결재)</span></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">5</div></td>
+              <td>신체장애로 인해 특정 영역 수행평가 응시 불가한 경우 인정점 처리</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">6</div></td>
+              <td><strong>평가문제 출제</strong>에 관한 사항 <span style="color:var(--sub);font-size:0.82rem;">(출제범위, 고사시간 등)</span></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">7</div></td>
+              <td>교과협의회를 통해 <strong><span style="color: red;">수정·보완</span>한 서답형 문항 채점기준표</strong></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">8</div></td>
+              <td><strong style="color:var(--red);">문항 오류, 정답 오류</strong> 등에 따른 처리 방법</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">9</div></td>
+              <td>정기시험 및 수행평가 <strong style="color:var(--red);">마감 후 성적 수정</strong></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">10</div></td>
+              <td>상급학교 진학 시험에 따른 <strong>결시 처리</strong></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">11</div></td>
+              <td>학업성적관리위원회에서 정하여 <strong>인정점</strong>을 부여하는 사항 <span style="color:var(--sub);font-size:0.82rem;">(근거, 최종 인정점수)</span></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">12</div></td>
+              <td>동일 학기 내 정기시험 및 수행평가 성적이 없는 경우 인정점 산출</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">13</div></td>
+              <td><strong>전 학기 수업에 <span style="color: red;">대부분 참여하지 못한 학생</span>의 과목별 세부능력 및 특기사항 입력 내용</strong></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">14</div></td>
+              <td>정기시험 시행 이전 재취학·재·전·편입학한 학생의 해당 정기시험 응시 여부 <span style="color:var(--sub);font-size:0.82rem;">(부득이한 경우)</span></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">15</div></td>
+              <td>규정에 명시되지 않은 학적변동 학생의 성적 산출 <span style="color:var(--sub);font-size:0.82rem;">(재취학·재·전·편입학 등)</span></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">16</div></td>
+              <td>귀국학생 등의 성적산출에 관한 사항 <span style="color:var(--sub);font-size:0.82rem;">(유사과목 인정, 인정점, 예외적 경우)</span></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">17</div></td>
+              <td>성적미산출 위탁교육기관 학생의 재적교 평가 미응시에 따른 성적 처리</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">18</div></td>
+              <td>병원학교 및 원격수업 등 건강장애학생의 평가에 관한 사항</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">19</div></td>
+              <td>창의적체험활동 운영 계획 <span style="color:var(--sub);font-size:0.82rem;">(자율·자치활동, 동아리활동, 진로활동)</span></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">20</div></td>
+              <td><strong>창의적체험활동 누가기록 작성 여부 및 방법</strong></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">21</div></td>
+              <td>평가 기준·방법·결과의 공개, 홍보</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">22</div></td>
+              <td>이의신청 기간 운영 및 이의신청 처리</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">23</div></td>
+              <td>정기시험 기출문제(정답 포함) 공개범위와 방법</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">24</div></td>
+              <td>보안 사고 발생 시 대처</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">25</div></td>
+              <td>학교 여건을 고려한 고사 감독 배치 방법 및 감독 강화 방안</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">26</div></td>
+              <td><strong>행동특성 및 종합의견 누가기록 작성 여부 및 방법</strong></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">27</div></td>
+              <td><strong>결석일수 + 출석인정 결석일수의 합이 수업일수의 1/3 도달</strong> 시, 다음날부터의 <strong>출석인정 결석 승인</strong> 여부</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">28</div></td>
+              <td>학생선수가 국가대표·전국체육대회 등 참가 시 <strong>출석인정 결석 허용일수(50일) 예외 처리</strong> 여부</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">29</div></td>
+              <td><strong>학교생활기록부 정정</strong>을 위한 증빙자료의 객관성 여부, 정정의 사유·내용의 타당성</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">30</div></td>
+              <td>학교폭력 가해학생 조치사항 기재내용 삭제와 관련한 삭제 담당자 지정</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">31</div></td>
+              <td><strong>귀국학생 및 전·편입생의 과목이수 인정</strong> 기준, <strong>최소 성취수준 보장지도 운영 사항</strong></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">32</div></td>
+              <td>장애학생에게 추가적인 평가조정이 필요한 경우 필요한 지원 사항</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><div class="delib-num" style="margin:0 auto;">33</div></td>
+              <td>기타 학업성적관리 관련 업무</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p style="color:var(--navy);font-weight:800;">중대부속고등학교 교무부 평가계</p>
+  <p style="color:rgba(255,255,255,0.75);display:none;">© 2026 All rights reserved.</p>
+  <p>© 2026 All rights reserved.</p>
+</footer>
+
+<script>
+const TAB_IDS = ['sec1','sec2','sec3','sec4'];
+const tocBtns = document.querySelectorAll('.toc-btn');
+
+function switchTab(targetId) {
+  // 모든 섹션 숨김
+  TAB_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('active');
+  });
+  // 모든 탭 버튼 비활성
+  tocBtns.forEach(btn => btn.classList.remove('active'));
+
+  // 대상 섹션 표시
+  const target = document.getElementById(targetId);
+  if (target) target.classList.add('active');
+
+  // 대상 탭 버튼 활성
+  const idx = TAB_IDS.indexOf(targetId);
+  if (tocBtns[idx]) tocBtns[idx].classList.add('active');
+
+  // 페이지 상단으로 부드럽게 스크롤
+  window.scrollTo({ top: document.querySelector('.toc-bar').offsetTop - 58, behavior: 'smooth' });
+}
+
+// 탭 버튼 클릭 이벤트
+tocBtns.forEach((btn, i) => {
+  btn.addEventListener('click', () => switchTab(TAB_IDS[i]));
+});
+</script>
+</body>
+</html>
