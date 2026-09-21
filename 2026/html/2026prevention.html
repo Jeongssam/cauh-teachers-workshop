@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>선행예방교육 연수 | 중대부고 교무부 평가계</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#24443c;
+    --ink-strong:#0f5a48;
+    --ink-soft:#4b6b63;
+    --paper:#ffffff;
+    --paper-2:#eef7f3;
+    --line:#d3e8e0;
+    --accent:#12886a;
+    --blue-bg:#e7f5f0;
+    --blue-line:#bfe3d8;
+    --blue-ink:#0e6b54;
+    --gold-bg:#fff5da;
+    --gold-line:#ecc158;
+    --gold-ink:#8a5a00;
+    --navy:#0c4a3e;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { min-height: 100%; font-family: 'Nanum Gothic', sans-serif; overflow-x: hidden; }
+
+  body {
+    background: linear-gradient(160deg, #0d5240 0%, #12775f 28%, #1fa183 58%, #6fccb4 84%, #bde9dc 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+    color: #fff;
+  }
+
+  .bokeh { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+  .bokeh span {
+    position: absolute; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 70%);
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    10% { opacity: 1; } 90% { opacity: 0.6; }
+    100% { transform: translateY(-110vh) scale(1.1); opacity: 0; }
+  }
+
+  .page { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 18px 60px; }
+  .container { width: 100%; max-width: 900px; }
+
+  .top-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 34px; animation: fadeDown 0.7s ease both; }
+  .school-badge { display: flex; align-items: center; gap: 10px; }
+  .badge-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.45); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px); flex-shrink: 0; }
+  .badge-icon svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .school-name { font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.85); line-height: 1.4; }
+  .back-btn { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.9); text-decoration: none; font-size: 0.85rem; font-weight: 700; padding: 9px 18px; border-radius: 30px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.32); backdrop-filter: blur(10px); transition: all 0.25s ease; white-space: nowrap; flex-shrink: 0; }
+  .back-btn:hover { background: rgba(255,255,255,0.26); color: #fff; transform: translateX(-2px); }
+  .back-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .hero { text-align: center; margin-bottom: 8px; animation: fadeDown 0.85s 0.1s ease both; }
+  .year-tag { display: inline-block; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.35); border-radius: 30px; padding: 4px 18px; font-size: 0.76rem; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 0.1em; margin-bottom: 18px; }
+  .hero-title { font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 800; color: #fff; line-height: 1.28; text-shadow: 0 2px 20px rgba(10,60,110,0.4); margin-bottom: 16px; }
+  .hero-meta { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.32); border-radius: 30px; padding: 8px 20px; font-size: 0.9rem; font-weight: 700; color: #fff; backdrop-filter: blur(10px); }
+  .hero-meta svg { width: 17px; height: 17px; stroke: #ffe09a; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .hero-meta b { color: #ffe09a; }
+
+  .part-head { display: flex; align-items: center; gap: 14px; margin: 44px 4px 18px; animation: fadeUp 0.8s ease both; }
+  .part-num { flex-shrink: 0; width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,0.42); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; font-weight: 800; color: #fff; }
+  .part-titles { flex: 1; }
+  .part-title { font-size: clamp(1.15rem, 3vw, 1.4rem); font-weight: 800; color: #fff; line-height: 1.3; text-shadow: 0 1px 10px rgba(10,50,100,0.3); }
+  .part-sub { font-size: 0.82rem; color: rgba(255,255,255,0.72); margin-top: 3px; }
+
+  /* PART 1 : Slide box */
+  .slide-box { background: var(--paper); border-radius: 22px; box-shadow: 0 24px 60px rgba(8,45,90,0.34); padding: 26px 28px 22px; animation: fadeUp 0.9s ease both; }
+  .slide-box-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .slide-kicker { display: inline-flex; align-items: center; gap: 7px; font-size: 0.76rem; font-weight: 800; color: var(--blue-ink); background: var(--blue-bg); border: 1px solid var(--blue-line); padding: 5px 13px; border-radius: 30px; }
+  .slide-kicker svg { width: 14px; height: 14px; stroke: var(--blue-ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .slide-counter { font-size: 0.9rem; font-weight: 800; color: var(--ink-soft); letter-spacing: 0.03em; }
+  .slide-counter b { color: var(--ink-strong); font-size: 1.15rem; }
+
+  .slides { position: relative; overflow: hidden; height: 420px; transition: height 0.35s ease; }
+  .track { display: flex; align-items: flex-start; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); height: 100%; }
+  .slide { flex: 0 0 100%; width: 100%; padding: 2px; }
+
+  .slide h3 { font-size: clamp(1.15rem, 3vw, 1.4rem); font-weight: 800; color: var(--ink-strong); line-height: 1.35; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 2px solid var(--line); display: flex; align-items: center; gap: 11px; }
+  .slide h3 .h-ic { flex-shrink: 0; width: 34px; height: 34px; border-radius: 9px; background: var(--blue-bg); border: 1px solid var(--blue-line); display: flex; align-items: center; justify-content: center; }
+  .slide h3 .h-ic svg { width: 19px; height: 19px; stroke: var(--ink-strong); fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+
+  .slide p { color: var(--ink); font-size: 0.95rem; line-height: 1.75; margin-bottom: 12px; }
+  .slide p:last-child { margin-bottom: 0; }
+
+  ul.clean { list-style: none; }
+  ul.clean li { position: relative; padding-left: 22px; margin-bottom: 12px; color: var(--ink); font-size: 0.95rem; line-height: 1.7; }
+  ul.clean li:last-child { margin-bottom: 0; }
+  ul.clean li::before { content: ''; position: absolute; left: 3px; top: 0.62em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  ul.clean li b { color: var(--ink-strong); font-weight: 800; }
+  ul.clean ul.clean { margin-top: 8px; }
+
+  ol.checks { list-style: none; counter-reset: chk; }
+  ol.checks li { position: relative; counter-increment: chk; padding: 15px 16px 15px 56px; margin-bottom: 11px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 13px; font-size: 0.95rem; line-height: 1.6; color: var(--ink); }
+  ol.checks li:last-child { margin-bottom: 0; }
+  ol.checks li b { color: var(--ink-strong); font-weight: 800; }
+  ol.checks li::before { content: counter(chk); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.92rem; font-weight: 800; }
+
+  .term-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .term { background: var(--blue-bg); border: 1px solid var(--blue-line); border-radius: 14px; padding: 18px 16px; }
+  .term h4 { font-size: 1rem; font-weight: 800; color: var(--ink-strong); margin-bottom: 9px; }
+  .term p { font-size: 0.87rem; line-height: 1.62; color: var(--ink); margin: 0; }
+
+  .callout { background: var(--gold-bg); border: 1px solid var(--gold-line); border-left: 4px solid #e0a92e; border-radius: 13px; padding: 18px 20px; margin-top: 16px; }
+  .callout .c-title { display: flex; align-items: center; gap: 9px; font-size: 0.98rem; font-weight: 800; color: var(--gold-ink); margin-bottom: 8px; }
+  .callout .c-title svg { width: 18px; height: 18px; stroke: #c8891a; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .callout p { font-size: 0.9rem; line-height: 1.68; color: var(--ink); margin: 0; }
+  .callout b { color: var(--gold-ink); font-weight: 800; }
+  .ref-line { font-size: 0.84rem; color: var(--ink-soft); margin-top: 14px; }
+
+  .slide-nav { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .nav-btn { display: inline-flex; align-items: center; gap: 7px; padding: 11px 22px; border-radius: 30px; border: none; background: var(--accent); color: #fff; font-family: inherit; font-size: 0.9rem; font-weight: 800; cursor: pointer; box-shadow: 0 6px 16px rgba(18,136,106,0.42); transition: all 0.2s ease; }
+  .nav-btn:hover:not(:disabled) { background: #0e7157; transform: translateY(-2px); box-shadow: 0 11px 24px rgba(18,136,106,0.52); }
+  .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; box-shadow: none; }
+  .nav-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .dots { display: flex; gap: 9px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line); border: none; padding: 0; cursor: pointer; transition: all 0.25s ease; }
+  .dot.active { background: var(--accent); transform: scale(1.35); }
+
+  /* PART 2 : Download */
+  .dl-panel { background: var(--navy); border-radius: 22px; padding: 30px 30px 26px; box-shadow: 0 20px 50px rgba(8,40,80,0.3); animation: fadeUp 0.9s ease both; }
+  .resource-note { font-size: 0.92rem; line-height: 1.75; color: rgba(255,255,255,0.92); margin-bottom: 20px; }
+  .resource-note b { color: #ffe09a; }
+  .dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .dl-btn { display: flex; align-items: center; gap: 16px; text-decoration: none; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.34); border-radius: 16px; padding: 20px 22px; box-shadow: 0 5px 16px rgba(0,0,0,0.2); transition: all 0.3s cubic-bezier(0.34, 1.4, 0.64, 1); }
+  .dl-btn:hover { background: rgba(255,255,255,0.26); border-color: rgba(255,255,255,0.65); transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,0.32); }
+  .dl-icon { flex-shrink: 0; width: 52px; height: 52px; border-radius: 13px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.32); display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(0,0,0,0.18); }
+  .dl-icon.teal { background: linear-gradient(145deg, #23c6a0, #0f9070); border-color: rgba(255,255,255,0.4); }
+  .dl-icon.gold { background: linear-gradient(145deg, #f4cf6a, #e0a92e); border-color: rgba(255,255,255,0.4); }
+  .dl-go { flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.34); display: flex; align-items: center; justify-content: center; transition: all 0.25s ease; }
+  .dl-go svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+  .dl-btn:hover .dl-go { background: #fff; transform: translateX(4px); }
+  .dl-btn:hover .dl-go svg { stroke: var(--navy); }
+  .dl-icon svg { width: 26px; height: 26px; stroke: #fff; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .dl-body { flex: 1; min-width: 0; }
+  .dl-title { font-size: 0.98rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+  .dl-sub { font-size: 0.78rem; color: rgba(255,255,255,0.68); line-height: 1.5; }
+  .dl-newwin { display: inline-flex; align-items: center; gap: 4px; margin-top: 7px; font-size: 0.72rem; font-weight: 700; color: #ffe09a; }
+  .dl-newwin svg { width: 12px; height: 12px; stroke: #ffe09a; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .kice-src { text-align: center; margin-top: 16px; font-size: 0.78rem; color: rgba(255,255,255,0.55); }
+
+  /* PART 3 : Submission */
+  .submit-panel { background: var(--paper); border-radius: 22px; padding: 30px 30px 28px; box-shadow: 0 20px 50px rgba(8,45,90,0.3); animation: fadeUp 0.9s ease both; }
+  .submit-lead { font-size: 0.95rem; line-height: 1.75; color: var(--ink); margin-bottom: 20px; }
+  .submit-lead b { color: var(--ink-strong); }
+  .deadline { color: #c02b2b; font-weight: 800; }
+
+  .info-row { display: flex; gap: 14px; padding: 15px 0; border-top: 1px solid var(--line); }
+  .info-row:first-of-type { border-top: none; }
+  .info-label { flex-shrink: 0; width: 96px; font-size: 0.8rem; font-weight: 800; color: #fff; background: var(--accent); border-radius: 8px; padding: 6px 8px; text-align: center; height: fit-content; }
+  .info-label.gold { background: #e0a92e; }
+  .info-body { flex: 1; }
+  .info-body p { font-size: 0.92rem; line-height: 1.65; color: var(--ink); margin: 0; }
+  .info-body b { color: var(--ink-strong); font-weight: 800; }
+  .info-body ul.clean li { font-size: 0.9rem; margin-bottom: 8px; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .pill { background: var(--blue-bg); border: 1px solid var(--blue-line); border-radius: 20px; padding: 5px 14px; font-size: 0.83rem; font-weight: 700; color: var(--blue-ink); }
+
+  .must-box { margin-top: 20px; background: var(--gold-bg); border: 1px solid var(--gold-line); border-left: 4px solid #e0a92e; border-radius: 13px; padding: 18px 20px; }
+  .must-box .c-title { display: flex; align-items: center; gap: 9px; font-size: 0.96rem; font-weight: 800; color: var(--gold-ink); margin-bottom: 8px; }
+  .must-box .c-title svg { width: 18px; height: 18px; stroke: #c8891a; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .must-box p { font-size: 0.9rem; line-height: 1.68; color: var(--ink); margin: 0; }
+  .must-box b { color: var(--gold-ink); font-weight: 800; }
+
+  .contact { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.32); border-radius: 18px; backdrop-filter: blur(18px); padding: 24px 28px; display: flex; align-items: center; gap: 18px; margin-top: 34px; }
+  .contact-icon { flex-shrink: 0; width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; }
+  .contact-icon svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .contact-title { font-size: 0.98rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
+  .contact-text { font-size: 0.87rem; color: rgba(255,255,255,0.9); line-height: 1.6; }
+  .contact-text b { color: #ffe09a; font-weight: 800; }
+
+  .footer { margin-top: 40px; text-align: center; color: rgba(255,255,255,0.45); font-size: 0.73rem; line-height: 1.9; }
+
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 640px) {
+    .slide-box { padding: 22px 18px 18px; }
+    .dl-panel, .submit-panel { padding: 24px 18px; }
+    .term-grid { grid-template-columns: 1fr; }
+    .dl-grid { grid-template-columns: 1fr; }
+    .school-name { font-size: 0.74rem; }
+    .contact { flex-direction: column; text-align: center; }
+    .nav-btn span { display: none; }
+    .nav-btn { padding: 10px 14px; }
+    .info-row { flex-direction: column; gap: 8px; }
+    .info-label { width: fit-content; padding: 5px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bokeh" id="bokeh"></div>
+
+<div class="page">
+  <div class="container">
+
+    <div class="top-nav">
+      <div class="school-badge">
+        <div class="badge-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="school-name">중대부속고등학교<br>교무부 평가계</div>
+      </div>
+      <a class="back-btn" id="backBtn" href="https://jeongssam.github.io/cauh-teachers-workshop/2026/2026workshop_index.html">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        2026 연수자료 목록으로
+      </a>
+    </div>
+
+    <div class="hero">
+      <div class="year-tag">2026학년도 2학기</div>
+      <h1 class="hero-title">선행예방교육 연수</h1>
+      <div class="hero-meta">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        연수 일시 : <b>2026년 9월 28일 (월)</b>
+      </div>
+    </div>
+
+    <!-- PART 1 -->
+    <div class="part-head">
+      <div class="part-num">1</div>
+      <div class="part-titles">
+        <div class="part-title">연수 내용</div>
+        <div class="part-sub">좌우 화살표(또는 스와이프)로 슬라이드를 넘겨 보세요.</div>
+      </div>
+    </div>
+
+    <div class="slide-box">
+      <div class="slide-box-top">
+        <span class="slide-kicker">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          연수 슬라이드
+        </span>
+        <span class="slide-counter"><b id="cur">1</b> / <span id="total">6</span></span>
+      </div>
+
+      <div class="slides" id="slides">
+        <div class="track" id="track">
+
+          <div class="slide">
+            <h3><span class="h-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>연수 개요 · 목적</h3>
+            <p>「공교육 정상화 촉진 및 선행교육 규제에 관한 특별법」과 2026년 선행학습 유발 관행 근절 계획에 따른 교원 대상 연수입니다.</p>
+            <ul class="clean">
+              <li><b>목적</b> : 교육과정 정상 운영으로 공교육 정상화 실현, 선행교육·선행학습 유발 관행 근절 인식 제고</li>
+            </ul>
+          </div>
+
+          <div class="slide">
+            <h3><span class="h-ic"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>꼭 알아야 할 핵심 용어</h3>
+            <div class="term-grid">
+              <div class="term"><h4>선행교육</h4><p>학교 교육과정에 앞서 편성·제공하는 교육. 다음 학기·학년·학교급 내용을 미리 가르치는 것.</p></div>
+              <div class="term"><h4>선행학습</h4><p>교육과정에 앞서는 범위·수준의 내용을 학생이 개별적으로 미리 학습하는 것.</p></div>
+              <div class="term"><h4>선행출제</h4><p>현재 편성한 교육과정과 다르게, 다음 학기·학년·학교급 내용을 교내 시험에 출제하는 것.</p></div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <h3><span class="h-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>평가문항 출제 시 주의사항</h3>
+            <ul class="clean">
+              <li><b>정기시험·수행평가 등 모든 교내 시험에서 선행출제를 하지 않아야 합니다.</b></li>
+              <li>편성된 교육과정의 교과용 도서 내용을 학생이 충실히 익히도록 지도합니다.</li>
+              <li>교내 대회에서도 교육과정의 범위·수준을 벗어난 내용을 출제·평가할 수 없습니다.</li>
+            </ul>
+            <div class="callout">
+              <div class="c-title"><svg viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>위반 시 제재 (법 제14조)</div>
+              <p><b>시정·변경 명령</b>이 내려지며, 불이행 시 관련자 <b>징계의결 요구</b> 및 기관 행정처분이 이루어질 수 있습니다.</p>
+            </div>
+          </div>
+
+          <div class="slide">
+            <h3><span class="h-ic"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>이것을 반드시 점검합니다!</h3>
+            <p>과목별 교수학습·평가계획서 및 평가 문항을 대상으로 다음 세 가지를 반드시 확인합니다.</p>
+            <ol class="checks">
+              <li>교육과정에 <b>편성된 과목</b>과 <b>실제 운영 수업 과목</b>의 일치 여부</li>
+              <li><b>교수학습·평가 운영계획(진도계획)</b>과 <b>중간고사 문항</b>의 일치 여부</li>
+              <li>교육과정의 <b>범위·수준을 벗어난 문항</b> 출제 여부</li>
+            </ol>
+          </div>
+
+          <div class="slide">
+            <h3><span class="h-ic"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>평가 문항 필수 확인 사항</h3>
+            <div class="callout" style="margin-top:0;">
+              <div class="c-title"><svg viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>2015 개정에서 축소·삭제된 내용의 출제 여부</div>
+              <p>2026학년도 고등학교 1~2학년에 <b>2022 개정 교육과정이 전면 적용</b>됩니다. <br> 2015 개정 대비 <b>축소·삭제된 내용이 문항에 포함되지 않았는지</b> 반드시 확인해 주세요.</p>
+            </div>
+          </div>
+
+          <div class="slide">
+            <h3><span class="h-ic"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>교육과정 편성·운영 '일치'의 의미</h3>
+            <ul class="clean">
+              <li>공시된 교육과정 기준으로 <b>학기 단위를 넘어서는 내용을 가르치면 안 됩니다.</b></li>
+              <li>다른 학기·학년에 편성된 내용을 앞서 가르치면 편성·운영 불일치로 판단합니다.</li>
+              <li>한 학기 내 재구성·빠른 운영은 <b>선행교육이 아닙니다</b>(학습 위계 고려 필요).</li>
+              <li>학기를 넘는 변경 시 <b>교과협의회·학업성적관리위·학교장 결재·공지</b> 절차 후 정보공시를 수정합니다.</li>
+            </ul>
+            <div class="callout">
+              <div class="c-title"><svg viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>교육과정 재구성시 유의사항</div>
+              <p>2022 개정·고교학점제 적용에 따라 <b>학기를 넘어서는 교육과정 재구성이 불가</b>합니다. <br>학기 단위 과목 이수로 학기별 서로 다른 과목 간 재구성도 불가합니다.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="slide-nav">
+        <button class="nav-btn" id="prev"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>이전</span></button>
+        <div class="dots" id="dots"></div>
+        <button class="nav-btn" id="next"><span>다음</span><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+
+    <!-- PART 2 -->
+    <div class="part-head">
+      <div class="part-num">2</div>
+      <div class="part-titles">
+        <div class="part-title">교과별 선행예방교육 자료 내려받기</div>
+        <div class="part-sub">한국교육과정평가원(KICE) 제공 자료 · 각 버튼은 새 창으로 열립니다.</div>
+      </div>
+    </div>
+
+    <div class="dl-panel">
+      <p class="resource-note"><b>「선행교육 예방을 위한 교과별 안내자료」</b>와 <b>동영상 자료</b>입니다. 아래 버튼을 눌러 <b>교과별 자료를 직접 다운로드·열람</b>해 주세요.</p>
+      <div class="dl-grid">
+        <a class="dl-btn" href="https://www.kice.re.kr/boardCnts/view.do?boardID=5000069&boardSeq=5101033&lev=0&m=0304&searchType=null&statusYN=W&page=1&s=kice" target="_blank" rel="noopener noreferrer">
+          <div class="dl-icon teal"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+          <div class="dl-body">
+            <div class="dl-title">교과별 안내자료 다운로드</div>
+            <div class="dl-sub">교과별 선행예방교육 안내자료(PDF/PPTX)를 내려받으세요.</div>
+            <span class="dl-newwin"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>새 창으로 열기</span>
+          </div>
+          <span class="dl-go"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </a>
+        <a class="dl-btn" href="https://www.kice.re.kr/boardCnts/view.do?boardID=5000069&boardSeq=5101034&lev=0&m=0304&searchType=S&statusYN=W&page=1&s=kice" target="_blank" rel="noopener noreferrer">
+          <div class="dl-icon gold"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+          <div class="dl-body">
+            <div class="dl-title">교과별 동영상 열람</div>
+            <div class="dl-sub">교과별 선행예방교육 동영상 자료를 열람하세요.</div>
+            <span class="dl-newwin"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>새 창으로 열기</span>
+          </div>
+          <span class="dl-go"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </a>
+      </div>
+      <div class="kice-src">출처 : 한국교육과정평가원(KICE) · www.kice.re.kr</div>
+    </div>
+
+    <!-- PART 3 -->
+    <div class="part-head">
+      <div class="part-num">3</div>
+      <div class="part-titles">
+        <div class="part-title">2026학년도 2학기 선행예방점검 자료 제출 안내</div>
+        <div class="part-sub">교과 주임 선생님 필독 · 안내 사항</div>
+      </div>
+    </div>
+
+    <div class="submit-panel">
+      <p class="submit-lead">2026학년도 2학기 학교교육과정 운영 및 선행출제 점검을 실시합니다. <br>교과 주임 선생님께서는 메시지로 안내 받은 첨부 파일을 작성하여 <b class="deadline">10/13(화)~10/14(수)</b> 중 <b>평가계</b>에게 제출해 주세요.</p>
+
+      <div class="info-row">
+        <div class="info-label">점검 대상</div>
+        <div class="info-body"><p>1~2학년 <b>국어 · 수학 · 영어 · 사회(역사·도덕 포함) · 과학</b> 교과(군)</p></div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">점검 사항</div>
+        <div class="info-body">
+          <ul class="clean">
+            <li>교육과정 편성 과목과 실제 운영 수업 과목의 일치 여부</li>
+            <li>교수학습·평가 운영계획(진도계획)과 중간고사 문항의 일치 여부</li>
+            <li>교육과정의 범위·수준을 벗어난 문항 출제 여부</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">점검위원</div>
+        <div class="info-body"><p>교감, 교과주임교사, 교과교사 2~3인</p></div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label gold">추가 제출</div>
+        <div class="info-body">
+          <p>수학·영어·사회 교과(군) 주임 선생님은 다음 과목의 <b>2학기 중간고사 선택형·서답형 문항정보표(PDF)</b>도 함께 제출해 주세요(교육청 제출 서류).</p>
+          <div class="pill-row">
+            <span class="pill">공통수학2</span><span class="pill">공통영어2</span><span class="pill">통합사회2</span><span class="pill">한국사2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label gold">별도 안내</div>
+        <div class="info-body"><p><b>2학기 교수학습·평가 운영계획</b>은 <b>정보공시 수정 완료본</b> 기준으로 교육청에 제출합니다. <br>변경사항이 있는 교과는 <b class="deadline">9/30(수)</b>까지 평가계에 전달해 주세요.<br>해당 교과는 10/1(목) 교과협의회 이후 10/2(금) 학업성적관리위원회를 통해 심의 받을 예정입니다.</p></div>
+      </div>
+
+      <div class="must-box">
+        <div class="c-title"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>필수 점검 내용</div>
+        <p>2022 개정 교육과정 전면 적용에 따라 <b>2015 개정에서 축소·삭제된 내용이 문항에 포함되지 않았는지</b> 반드시 확인해 주세요. <br><b>본 연수 내용</b>을 함께 참고해 주세요.</p>
+      </div>
+    </div>
+
+    <div class="contact">
+      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <div class="contact-body">
+        <div class="contact-title">문의 안내</div>
+        <div class="contact-text">그 외 관련 사항 문의가 있으신 경우, <b>평가계 정은선T(내선 291)</b>에게로 문의해 주세요. 😊</div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>중대부속고등학교 교무부 평가계</p>
+      <p>© 2026 All rights reserved.</p>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  const bokeh = document.getElementById('bokeh');
+  for (let i = 0; i < 26; i++) {
+    const s = document.createElement('span');
+    const size = Math.random() * 80 + 20;
+    s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100+100}%;animation-duration:${Math.random()*12+8}s;animation-delay:${Math.random()*10}s;opacity:${Math.random()*0.5+0.1};`;
+    bokeh.appendChild(s);
+  }
+
+  /* 뒤로가기: 목록 페이지에서 넘어왔으면 새로 열지 않고 브라우저 뒤로가기 */
+  const backBtn = document.getElementById('backBtn');
+  if (backBtn) {
+    backBtn.addEventListener('click', function (e) {
+      if (document.referrer && document.referrer.indexOf('2026workshop_index') !== -1) {
+        e.preventDefault();
+        history.back();
+      }
+    });
+  }
+
+  const track = document.getElementById('track');
+  const slidesEl = document.getElementById('slides');
+  const slides = Array.from(track.children);
+  const total = slides.length;
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const dotsWrap = document.getElementById('dots');
+  const curEl = document.getElementById('cur');
+  document.getElementById('total').textContent = total;
+
+  let idx = 0;
+
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.className = 'dot' + (i === 0 ? ' active' : '');
+    b.setAttribute('aria-label', (i + 1) + '번 슬라이드');
+    b.addEventListener('click', () => go(i));
+    dotsWrap.appendChild(b);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function setHeight() { slidesEl.style.height = slides[idx].offsetHeight + 'px'; }
+
+  function go(i) {
+    idx = Math.max(0, Math.min(total - 1, i));
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    curEl.textContent = idx + 1;
+    dots.forEach((d, k) => d.classList.toggle('active', k === idx));
+    prevBtn.disabled = idx === 0;
+    nextBtn.disabled = idx === total - 1;
+    setHeight();
+  }
+
+  prevBtn.addEventListener('click', () => go(idx - 1));
+  nextBtn.addEventListener('click', () => go(idx + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') go(idx - 1);
+    if (e.key === 'ArrowRight') go(idx + 1);
+  });
+
+  let startX = null;
+  slidesEl.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  slidesEl.addEventListener('touchend', (e) => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 45) { dx < 0 ? go(idx + 1) : go(idx - 1); }
+    startX = null;
+  }, { passive: true });
+
+  window.addEventListener('load', () => go(0));
+  window.addEventListener('resize', setHeight);
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(setHeight); }
+  go(0);
+</script>
+</body>
+</html>
