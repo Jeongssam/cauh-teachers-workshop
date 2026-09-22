@@ -309,6 +309,41 @@
     animation: fadeUp 1s 0.5s ease both;
   }
 
+  /* 반짝이는 NEW 배지 */
+  .new-badge {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 10px;
+    padding: 3px 11px;
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #8a6a00;
+    background: linear-gradient(135deg, #fff0b3, #ffe07a);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle;
+    animation: newPulse 1.6s ease-in-out infinite;
+  }
+  .new-badge::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -60%;
+    width: 45%; height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-20deg);
+    animation: newShine 2.2s ease-in-out infinite;
+  }
+  @keyframes newPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,215,90,0.55); }
+    50%      { box-shadow: 0 0 15px 3px rgba(255,215,90,0.9); }
+  }
+  @keyframes newShine {
+    0%        { left: -60%; }
+    60%, 100% { left: 130%; }
+  }
+
   /* Animations */
   @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-18px); }
@@ -377,7 +412,7 @@
         </svg>
       </div>
       <div class="card-body">
-        <span class="card-status status-done">✓ 1차 연수 진행</span>
+        <span class="card-status status-done">✓ 2차 연수 예정</span>
         <div class="card-title">2026 학업성적관리규정 안내 연수</div>
         <div class="card-desc">연수자료를 확인하실 수 있습니다.</div>
       </div>
@@ -394,8 +429,8 @@
         </svg>
       </div>
       <div class="card-body">
-        <span class="card-status status-done">✓ 연수 진행</span>
-        <div class="card-title">선행예방교육 연수</div>
+        <span class="card-status status-done">✓ 연수 진행중</span>
+        <div class="card-title">선행예방교육 연수 <span class="new-badge">NEW</span></div>
         <div class="card-desc">연수자료를 확인하실 수 있습니다.</div>
       </div>
       <div class="card-arrow">
